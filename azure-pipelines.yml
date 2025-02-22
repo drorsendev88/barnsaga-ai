@@ -1,0 +1,28 @@
+trigger:
+  - dev  # Kör pipelinen vid push till dev-branch
+
+pool:
+  vmImage: 'ubuntu-latest'  # Använder en Linux-baserad agent
+
+steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.x'
+
+  - script: |
+      python -m venv venv
+      source venv/bin/activate
+      pip install -r requirements.txt
+    displayName: "Install dependencies"
+
+  - script: |
+      docker build -t flask-app .
+    displayName: "Build Docker image"
+
+  - script: |
+      docker run -d -p 5000:5000 flask-app
+    displayName: "Run Docker container"
+
+  - script: |
+      curl http://localhost:5000
+    displayName: "Test application response"
