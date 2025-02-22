@@ -1,0 +1,29 @@
+# Ignorera Python-venv
+venv/
+*.pyc
+__pycache__/
+
+# Ignorera miljövariabler och känsliga filer
+.env
+.env.local
+.secrets
+
+# Ignorera IDE-specifika filer (VS Code, PyCharm)
+.vscode/
+.idea/
+
+# Ignorera loggfiler och systemfiler
+*.log
+*.DS_Store
+Thumbs.db
+
+# Ignorera Docker-relaterade filer
+**/__pycache__/
+.dockerignore
+
+# Ignorera eventuella byggfiler
+build/
+dist/
+
+# Ignorera historikfiler från VS Code
+.history/
